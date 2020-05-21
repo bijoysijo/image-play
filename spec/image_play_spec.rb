@@ -1,7 +1,11 @@
 require 'spec_helper'
+require 'minitest/autorun'
 
-RSpec.describe ImagePlay do
-  it "has a version number" do
-    expect(ImagePlay::VERSION).not_to be nil
+class InitializeTest < Minitest::Test
+  def test_returns_a_path
+    assert ImagePlay::Image.initialize("Whatever!") !=nil
   end
 end
+
+
+
