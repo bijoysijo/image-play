@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "open3"
   spec.add_dependency "mini_magick"
   spec.add_dependency "rtesseract"
+  spec.add_development_dependency "minitest"
 end
