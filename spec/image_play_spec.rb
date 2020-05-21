@@ -5,7 +5,7 @@ RSpec.describe ImagePlay do
     expect(ImagePlay::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "has a input" do
+    pending
   end
 end
