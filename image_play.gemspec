@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{gem to extract text from images}
   spec.description   = %q{uses rtesseract, mini-magick to extract text from images.}
-  spec.requirements << 'you must have Imagemagick installed.'
+  spec.requirements << 'you must have Imagemagick and tesseract installed.'
   spec.homepage      = "https://github.com/bijoysijo/image-play"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
