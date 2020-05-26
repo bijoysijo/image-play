@@ -23,11 +23,12 @@ Or install it yourself as:
 You can provide an image or a image url as input to the function.
 
 text = ImagePlay::Image.new('input_path')
+
 text.process
 
 The extracted text will be returned to you.
 
-This works best for images with white text on it. The image is processed using minimagick before extracting text using rtesseract. I'm trying to increase the accuracy and the ability to extract text whose color isn't white.
+This works best for images with white text on it. The image is processed using minimagick before extracting text using rtesseract. I'm trying to increase the accuracy and the ability to extract text with non-white colors.
 
 ## Development
 
