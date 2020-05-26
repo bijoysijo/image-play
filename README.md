@@ -1,8 +1,6 @@
 # ImagePlay
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/image_play`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to your ImagePlay! A Ruby gem to extract text from images. ImagePlay uses Rtesseract and MiniMagick to extract text from images. ImagePlay requires Imagemagick and Tesseract to be installed on your system.
 
 ## Installation
 
@@ -22,17 +20,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can provide an image or a image url as input to the function.
+
+text = ImagePlay::Image.new('input_path')
+text.process
+
+The extracted text will be returned to you.
+
+This works best for images with white text on it. The image is processed using minimagick before extracting text using rtesseract. I'm trying to increase the accuracy and the ability to extract text whose color isn't white.
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/image_play.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bijoysijo/image_play.
 
 
 ## License
