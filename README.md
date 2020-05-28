@@ -22,9 +22,7 @@ Or install it yourself as:
 
 You can provide an image or a image url as input to the function.
 
-text = ImagePlay::Image.new('input_path')
-
-text.process
+text = ImagePlay::Image.extract('input_path')
 
 The extracted text will be returned to you.
 

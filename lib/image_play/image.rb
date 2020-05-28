@@ -4,29 +4,42 @@ require 'rtesseract'
 
 module ImagePlay
   class Image
+    attr_reader :image_path
+
+    def self.extract(*args)
+      new(*args).process
+    end
+
     def initialize(input_path)
-      @input_path = input_path
+      @image_path = input_path
     end
 
     def process
-      image = MiniMagick::Image.new(@input_path)
+      grayscale(image_path)
+      negate(image_path)
+      extract_text(image_path)
+    end
+
+    private
+
+    def grayscale(path)
+      image = MiniMagick::Image.new(path)
       image.colorspace('Gray')
-      image.write(@input_path)
+      image.write(path)
+    end
+
+    def negate(path)
       MiniMagick::Tool::Magick.new do |img|
-        img << @input_path
+        img << path
         img.negate
         img.threshold("001%")
         img.negate
-        img << @input_path
+        img << path
       end
+    end
 
-      # text, _,  _ =
-      # Open3.capture3("tesseract #{@input_path} stdout -l eng --oem 0 --psm 3")
-      # text.strip
-
-
-      text = RTesseract.new(@input_path)
-      text.to_s.downcase.gsub(/[[:punct:]]/, ' ').split.join('-')
+    def extract_text(path)
+      RTesseract.new(path).to_s.downcase.gsub(/[[:punct:]]/, ' ')
     end
   end
 end
