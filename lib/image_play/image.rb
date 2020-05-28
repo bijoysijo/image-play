@@ -1,6 +1,7 @@
 require 'mini_magick'
 require 'open3'
 require 'rtesseract'
+require 'tempfile'
 
 module ImagePlay
   class Image
@@ -15,17 +16,19 @@ module ImagePlay
     end
 
     def process
-      grayscale(image_path)
-      negate(image_path)
-      extract_text(image_path)
+      processed_img_path = grayscale(image_path)
+      negate(processed_img_path)
+      extract_text(processed_img_path)
     end
 
     private
 
     def grayscale(path)
-      image = MiniMagick::Image.new(path)
+      image = MiniMagick::Image.open(path)
       image.colorspace('Gray')
-      image.write(path)
+      processed_image_path = Tempfile.new('foo').path
+      image.write(processed_image_path)
+      processed_image_path
     end
 
     def negate(path)
@@ -39,7 +42,7 @@ module ImagePlay
     end
 
     def extract_text(path)
-      RTesseract.new(path).to_s.downcase.gsub(/[[:punct:]]/, ' ')
+      RTesseract.new(path).to_s.downcase.split.join(' ')
     end
   end
 end
